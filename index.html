@@ -121,12 +121,15 @@
             display: flex;
             align-items: center;
             gap: 12px;
+            cursor: pointer;
+            text-decoration: none;
+            user-select: none;
         }
 
         .logo-wrapper {
             position: relative;
-            width: 44px;
-            height: 44px;
+            width: 46px;
+            height: 46px;
             flex-shrink: 0;
             display: flex;
             align-items: center;
@@ -134,8 +137,12 @@
             background: #ffffff;
             border-radius: 50%;
             overflow: hidden;
-            box-shadow: 0 4px 12px rgba(192, 78, 51, 0.2);
-            border: 1.5px solid var(--border-soft);
+            box-shadow: 0 4px 14px rgba(192, 78, 51, 0.2);
+            border: 2px solid var(--border-soft);
+            transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .logo-container:hover .logo-wrapper {
+            transform: scale(1.06);
         }
 
         .logo-img {
@@ -146,15 +153,43 @@
         }
 
         .logo-text {
-            font-family: var(--font-heading);
-            font-size: 1.15rem;
-            font-weight: 900; 
-            color: var(--text-primary);
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            line-height: 1.1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            line-height: 1;
         }
-        .logo-text span { color: var(--accent-main); display: block; font-size: 0.78em; letter-spacing: 1px; }
+
+        .logo-title {
+            font-family: var(--font-body);
+            font-size: 1.35rem;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            color: var(--text-primary);
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .logo-title .brand-dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: var(--accent-main);
+            box-shadow: 0 0 8px rgba(192, 78, 51, 0.4);
+        }
+
+        .logo-subtitle {
+            font-family: var(--font-body);
+            font-size: 0.65rem;
+            font-weight: 800;
+            letter-spacing: 2.4px;
+            text-transform: uppercase;
+            color: var(--accent-main);
+            line-height: 1;
+            margin-top: 3px;
+        }
 
         /* --- THEME TOGGLE --- */
         .theme-toggle {
@@ -321,6 +356,32 @@
 
         .menu-item.hero-item {
             grid-column: span 2;
+        }
+
+        .menu-item.no-img {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid var(--border-soft);
+            box-shadow: var(--shadow-soft);
+            padding: 16px 14px 14px;
+            min-height: 160px;
+        }
+
+        .menu-item.no-img .item-details {
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .menu-item.no-img .item-footer {
+            margin-top: 14px;
+            padding-top: 8px;
+            border-top: 1px dashed var(--border-soft);
         }
 
         .menu-item-img {
@@ -683,11 +744,14 @@
 <body>
 
     <header>
-        <div class="logo-container">
+        <div class="logo-container" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" role="button" aria-label="RS Fast Food Home">
             <div class="logo-wrapper">
-                <img src="images/logo.png" alt="RS Chinese Fast Food & Dudh Dairy Logo" class="logo-img">
+                <img src="images/logo.png" alt="RS Fast Food Emblem Logo" class="logo-img">
             </div>
-            <div class="logo-text"><span>RS</span> FAST FOOD</div>
+            <div class="logo-text">
+                <div class="logo-title">RS<span class="brand-dot"></span></div>
+                <div class="logo-subtitle">FAST FOOD</div>
+            </div>
         </div>
         
         <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Dark Mode">
@@ -1366,7 +1430,7 @@
 
             <div id="burger" class="menu-category-title">🍔 Burgers & Garlic Bread</div>
             <div class="menu-grid">
-                <div class="menu-item hero-item reveal-on-scroll">
+                <div class="menu-item reveal-on-scroll">
                     <div class="badge-bestseller">Special</div>
                     <img src="images/paneer-cheese-burger.jpeg" class="menu-item-img" alt="Paneer Cheese Burger" loading="lazy">
                     <div class="item-details">
@@ -1426,9 +1490,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="menu-item reveal-on-scroll">
-                    
-                    <img src="https://images.unsplash.com/photo-1573140247632-f8fd74997d5c?w=400&h=400&fit=crop" class="menu-item-img" alt="Garlic Bread" loading="lazy">
+                <div class="menu-item no-img reveal-on-scroll">
                     <div class="item-details">
                         <span class="name">Garlic Bread</span>
                         <span class="name-hi">गार्लिक ब्रेड</span>
@@ -1441,9 +1503,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="menu-item reveal-on-scroll">
-                    
-                    <img src="https://images.unsplash.com/photo-1573140247632-f8fd74997d5c?w=400&h=400&fit=crop" class="menu-item-img" alt="Cheese Garlic Bread" loading="lazy">
+                <div class="menu-item no-img reveal-on-scroll">
                     <div class="item-details">
                         <span class="name">Cheese Garlic Bread</span>
                         <span class="name-hi">चीज गार्लिक ब्रेड</span>
