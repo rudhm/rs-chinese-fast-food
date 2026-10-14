@@ -302,12 +302,14 @@
         .hero-img {
             width: 100%;
             height: auto;
-            aspect-ratio: 16/9;
+            max-height: 520px;
             object-fit: cover;
+            object-position: center 30%;
             border-radius: 24px;
             margin: 20px 0 25px;
             box-shadow: var(--shadow-soft);
             border: 1px solid rgba(255,255,255,0.5);
+            display: block;
         }
 
         /* --- MENU SECTION --- */
@@ -784,7 +786,10 @@
             </div>
         </section>
 
-        <img src="images/schezwan-noodles.jpeg" alt="RS Chinese Fast Food Specials" class="hero-img">
+        <picture>
+            <source srcset="images/hero-banner.webp" type="image/webp">
+            <img src="images/hero-banner.png" alt="RS Fast Food Specials" class="hero-img">
+        </picture>
 
         <section class="reveal-on-scroll" style="text-align: center; margin-bottom: 30px; padding: 0 10px;">
             <p style="font-size: 1.05rem; color: var(--text-primary); line-height: 1.7; max-width: 600px; margin: 0 auto; font-family: var(--font-body); font-weight: 400;">
