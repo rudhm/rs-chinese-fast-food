@@ -1,0 +1,25 @@
+{
+  "name": "RS Chinese Fast Food & Dudh Dairy",
+  "short_name": "RS Fast Food",
+  "description": "Tasty Food, Healthy Mood. 100% Pure Vegetarian Indian Fast Food & Cafe with Free Home Delivery.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#FDFBF7",
+  "theme_color": "#C04E33",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -9,7 +9,43 @@
     <title>RS Chinese Fast Food & Dudh Dairy - Tasty Food, Healthy Mood</title>
     
     <link rel="icon" href="images/logo.png" type="image/png">
-    <link rel="apple-touch-icon" href="images/logo.png">
+    <link rel="apple-touch-icon" href="images/icon-192.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="RS Fast Food">
+
+    <!-- Local Business & Restaurant Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Restaurant",
+      "name": "RS Chinese Fast Food & Dudh Dairy",
+      "image": "https://rsfastfood.in/images/logo.png",
+      "telephone": "+918458920691",
+      "servesCuisine": ["Indian Fast Food", "Indo-Chinese", "Vegetarian", "Cafe"],
+      "priceRange": "₹10 - ₹150",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Amarpatan",
+        "addressLocality": "Satna",
+        "addressRegion": "Madhya Pradesh",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 24.2798872,
+        "longitude": 80.7637640
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+        "opens": "09:00",
+        "closes": "23:00"
+      },
+      "hasMenu": "https://rsfastfood.in/#menu"
+    }
+    </script>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -726,6 +762,266 @@
         .payment-option-title { font-size: 0.85rem; font-weight: 700; color: var(--text-primary); }
         .payment-option-detail { font-size: 0.7rem; color: var(--text-secondary); }
 
+        /* --- SEARCH & QUICK FILTERS --- */
+        .search-filter-section {
+            margin: 22px 0 16px;
+        }
+        .search-bar-box {
+            position: relative;
+            display: flex;
+            align-items: center;
+            background: var(--bg-card);
+            border: 1.5px solid var(--border-soft);
+            border-radius: 100px;
+            padding: 4px 16px;
+            box-shadow: var(--shadow-soft);
+            transition: all 0.25s ease;
+        }
+        .search-bar-box:focus-within {
+            border-color: var(--accent-main);
+            box-shadow: 0 4px 16px rgba(192, 78, 51, 0.15);
+        }
+        .search-svg {
+            color: var(--text-secondary);
+            flex-shrink: 0;
+            margin-right: 10px;
+        }
+        .search-input {
+            width: 100%;
+            border: none;
+            outline: none;
+            background: transparent;
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            padding: 10px 0;
+        }
+        .search-input::placeholder {
+            color: var(--text-secondary);
+            opacity: 0.7;
+        }
+        .search-clear-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            padding: 4px 8px;
+            cursor: pointer;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.2s;
+        }
+        .search-clear-btn:hover { color: var(--accent-main); }
+
+        .filter-chips-scroll {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 12px 2px 4px;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .filter-chips-scroll::-webkit-scrollbar { display: none; }
+
+        .filter-chip {
+            background: var(--bg-card);
+            border: 1px solid var(--border-soft);
+            color: var(--text-secondary);
+            padding: 7px 15px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+            flex-shrink: 0;
+        }
+        .filter-chip.active {
+            background: var(--accent-main);
+            color: white;
+            border-color: var(--accent-main);
+            box-shadow: 0 4px 10px rgba(192, 78, 51, 0.25);
+            transform: scale(1.02);
+        }
+
+        .no-search-results {
+            text-align: center;
+            padding: 40px 20px;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px dashed var(--border-soft);
+            margin: 20px 0;
+        }
+        .no-results-icon { font-size: 2.5rem; margin-bottom: 8px; }
+        .no-search-results h4 {
+            font-size: 1.15rem;
+            font-family: var(--font-heading);
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+        .no-search-results p {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            max-width: 380px;
+            margin: 0 auto;
+        }
+
+        /* --- HEADER ACTIONS --- */
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .icon-btn {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-soft);
+        }
+        .icon-btn:hover {
+            background-color: var(--accent-light);
+            border-color: var(--accent-main);
+            color: var(--accent-main);
+        }
+
+        /* --- TRUST BADGES & HERO EXTRAS --- */
+        .trust-badge-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 14px;
+        }
+        .trust-chip {
+            background: var(--bg-card);
+            border: 1px solid var(--border-soft);
+            color: var(--text-secondary);
+            font-size: 0.76rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 100px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+        }
+        .maps-link-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            color: var(--accent-main);
+            font-weight: 700;
+            font-size: 0.82rem;
+            border: 1px solid var(--border-soft);
+            padding: 3px 10px;
+            border-radius: 100px;
+            background: var(--bg-card);
+        }
+        .maps-link-btn:hover {
+            background: var(--accent-light);
+            border-color: var(--accent-main);
+        }
+
+        /* --- CART INPUTS & DETAILS --- */
+        .cart-delivery-eta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--accent-light);
+            border-radius: 12px;
+            padding: 8px 12px;
+            margin: 10px 0;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--accent-dark);
+        }
+        .eta-pill {
+            background: #25D366;
+            color: white;
+            font-size: 0.72rem;
+            padding: 2px 8px;
+            border-radius: 100px;
+            font-weight: 800;
+        }
+        .cart-details-fields {
+            margin: 12px 0 6px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .form-row label {
+            display: block;
+            font-size: 0.74rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            margin-bottom: 3px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        .cart-input {
+            width: 100%;
+            border: 1px solid var(--border-soft);
+            border-radius: 10px;
+            padding: 9px 12px;
+            font-size: 0.88rem;
+            font-family: var(--font-body);
+            color: var(--text-primary);
+            background: var(--bg-body);
+            outline: none;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        .cart-input:focus {
+            border-color: var(--accent-main);
+            box-shadow: 0 0 0 2px rgba(192, 78, 51, 0.15);
+        }
+
+        /* PWA Install Notification / Banner */
+        .pwa-install-banner {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(140%);
+            width: calc(100% - 40px);
+            max-width: 440px;
+            background: var(--bg-card);
+            border: 1.5px solid var(--accent-main);
+            border-radius: 16px;
+            padding: 12px 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .pwa-install-banner.show {
+            transform: translateX(-50%) translateY(0);
+        }
+        .pwa-info { display: flex; align-items: center; gap: 10px; }
+        .pwa-info img { width: 40px; height: 40px; border-radius: 10px; object-fit: cover; }
+        .pwa-text h5 { font-size: 0.88rem; color: var(--text-primary); font-weight: 700; margin: 0; }
+        .pwa-text p { font-size: 0.72rem; color: var(--text-secondary); margin: 0; }
+        .pwa-actions { display: flex; align-items: center; gap: 6px; }
+        .pwa-btn-install {
+            background: var(--accent-main);
+            color: white;
+            padding: 7px 14px;
+            border-radius: 100px;
+            font-size: 0.78rem;
+            font-weight: 700;
+        }
+        .pwa-btn-dismiss {
+            background: none;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            padding: 4px 6px;
+        }
+
         @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -756,10 +1052,15 @@
             </div>
         </div>
         
-        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Dark Mode">
-            <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-            <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-        </button>
+        <div class="header-actions">
+            <button class="icon-btn" onclick="shareMenu()" aria-label="Share Menu" title="Share Menu">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+            </button>
+            <button class="icon-btn theme-toggle" onclick="toggleTheme()" aria-label="Toggle Dark Mode" title="Toggle Dark/Light Mode">
+                <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            </button>
+        </div>
     </header>
 
     <div class="category-nav">
@@ -779,10 +1080,17 @@
             <div class="hero-tag">🛵 Free Home Delivery</div>
             <h1>Tasty Food,<br>Healthy Mood.</h1>
             <p>From fiery Schezwan Noodles & loaded Pizzas to refreshing Shakes & hot Chai — prepared fresh with pure ingredients.</p>
-            <div class="quick-contact-bar">
+            <div class="trust-badge-row">
+                <span class="trust-chip">⭐ 4.9 (500+ Foodies)</span>
+                <span class="trust-chip">🌿 100% Pure Veg</span>
+                <span class="trust-chip">🥛 Farm Fresh Dairy</span>
+            </div>
+            <div class="quick-contact-bar" style="margin-top: 14px;">
                 <span>📞 <a href="tel:8458920691">8458920691</a></span>
                 <span>•</span>
                 <span><a href="tel:6269270766">6269270766</a></span>
+                <span>•</span>
+                <a href="https://maps.google.com/?q=24.2798872,80.7637640" target="_blank" class="maps-link-btn" title="View Location on Google Maps">📍 Map</a>
             </div>
         </section>
 
@@ -791,10 +1099,33 @@
             <img src="images/hero-banner.png" alt="RS Fast Food Specials" class="hero-img">
         </picture>
 
-        <section class="reveal-on-scroll" style="text-align: center; margin-bottom: 30px; padding: 0 10px;">
+        <section class="reveal-on-scroll" style="text-align: center; margin-bottom: 20px; padding: 0 10px;">
             <p style="font-size: 1.05rem; color: var(--text-primary); line-height: 1.7; max-width: 600px; margin: 0 auto; font-family: var(--font-body); font-weight: 400;">
                 Welcome to <strong style="color: var(--accent-main);">RS Chinese Fast Food & Dudh Dairy</strong>. Whether you are craving crispy Chinese, oven-fresh Pizza, juicy Burgers, Maggi or cooling Shakes — we deliver great taste straight to you!
             </p>
+        </section>
+
+        <!-- Live Search & Instant Quick Filters -->
+        <section class="search-filter-section">
+            <div class="search-bar-box">
+                <svg class="search-svg" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" id="menu-search-input" class="search-input" placeholder="Search dishes (paneer, burger, maggi, chai...)" autocomplete="off" aria-label="Search menu items" oninput="handleSearch(this.value)">
+                <button type="button" id="search-clear-btn" class="search-clear-btn" onclick="clearSearch()" aria-label="Clear search" style="display:none;">✕</button>
+            </div>
+            <div class="filter-chips-scroll">
+                <button type="button" class="filter-chip active" data-filter="all" onclick="setQuickFilter('all', this)">All (67)</button>
+                <button type="button" class="filter-chip" data-filter="bestseller" onclick="setQuickFilter('bestseller', this)">⭐ Must Try</button>
+                <button type="button" class="filter-chip" data-filter="paneer" onclick="setQuickFilter('paneer', this)">🧀 Paneer</button>
+                <button type="button" class="filter-chip" data-filter="cheese" onclick="setQuickFilter('cheese', this)">🧀 Cheese</button>
+                <button type="button" class="filter-chip" data-filter="spicy" onclick="setQuickFilter('spicy', this)">🌶️ Spicy</button>
+                <button type="button" class="filter-chip" data-filter="under-50" onclick="setQuickFilter('under-50', this)">🏷️ Under ₹50</button>
+            </div>
+            <div id="no-search-results" class="no-search-results" style="display:none;">
+                <div class="no-results-icon">🔍</div>
+                <h4>No dishes found</h4>
+                <p>We couldn't find anything matching your search. Try checking your spelling or clear the filter.</p>
+                <button type="button" class="btn" style="padding: 8px 20px; font-size: 0.88rem; margin-top: 12px;" onclick="clearSearch()">View Full Menu</button>
+            </div>
         </section>
 
         <section id="menu" class="menu-section">
@@ -2012,6 +2343,26 @@
                     <span id="cart-final-total">₹0</span>
                 </div>
 
+                <div class="cart-delivery-eta">
+                    <span>🛵 Free Home Delivery</span>
+                    <span class="eta-pill">⚡ 25–35 Mins</span>
+                </div>
+
+                <div class="cart-details-fields">
+                    <div class="form-row">
+                        <label for="cust-name">Your Name</label>
+                        <input type="text" id="cust-name" class="cart-input" placeholder="e.g. Rahul Sharma" autocomplete="name">
+                    </div>
+                    <div class="form-row">
+                        <label for="cust-address">Delivery Address / Landmark</label>
+                        <input type="text" id="cust-address" class="cart-input" placeholder="e.g. Near Bus Stand, Amarpatan" autocomplete="street-address">
+                    </div>
+                    <div class="form-row">
+                        <label for="cust-notes">Special Instructions (Optional)</label>
+                        <input type="text" id="cust-notes" class="cart-input" placeholder="e.g. Make it Jain, extra spicy, less sugar">
+                    </div>
+                </div>
+
                 <fieldset class="payment-section">
                     <div class="payment-heading">
                         <h4>Payment Preference</h4>
@@ -2446,30 +2797,183 @@
             const items = Object.entries(cart);
             if (items.length === 0) return;
 
+            const nameInput = document.getElementById('cust-name');
+            const addressInput = document.getElementById('cust-address');
+            const notesInput = document.getElementById('cust-notes');
+
+            const custName = (nameInput && nameInput.value.trim()) || '';
+            const custAddress = (addressInput && addressInput.value.trim()) || '';
+            const custNotes = (notesInput && notesInput.value.trim()) || '';
+
+            // Remember in localStorage
+            if (custName) localStorage.setItem('rs_cust_name', custName);
+            if (custAddress) localStorage.setItem('rs_cust_address', custAddress);
+
             const selectedPayment = document.querySelector('input[name="payment-method"]:checked');
             const paymentMethod = selectedPayment ? selectedPayment.value : 'Cash on Delivery';
 
-            let message = "*New Order - RS Chinese Fast Food & Dudh Dairy*%0A%0A";
-            let total = 0;
+            let message = "*New Order - RS Chinese Fast Food & Dudh Dairy*%0A";
+            message += "━━━━━━━━━━━━━━━━━━━%0A";
 
+            if (custName) {
+                message += `👤 *Customer:* ${encodeURIComponent(custName)}%0A`;
+            }
+            if (custAddress) {
+                message += `📍 *Delivery Address:* ${encodeURIComponent(custAddress)}%0A`;
+            } else {
+                message += `📍 *Delivery Address:* [Please send your address/location]%0A`;
+            }
+            if (custNotes) {
+                message += `📝 *Notes:* ${encodeURIComponent(custNotes)}%0A`;
+            }
+            message += "━━━━━━━━━━━━━━━━━━━%0A%0A";
+            message += "🍽️ *Ordered Items:*%0A";
+
+            let total = 0;
             items.forEach(([name, qty]) => {
                 const price = MENU[name] || 0;
-                message += `▪ *${name}* x ${qty} = ₹${price * qty}%0A`;
+                message += `▪ *${encodeURIComponent(name)}* x ${qty} = ₹${price * qty}%0A`;
                 total += price * qty;
             });
 
-            message += `%0A*Total Bill: ₹${total}*%0A`;
-            message += `🛵 *Delivery:* Free Home Delivery%0A`;
-            message += `💳 *Payment Method:* ${paymentMethod}%0A%0A`;
-            message += `📍 *Delivery Address:* [Please send your address / location]`;
+            message += "%0A━━━━━━━━━━━━━━━━━━━%0A";
+            message += `💰 *Total Bill:* ₹${total}%0A`;
+            message += `🛵 *Delivery:* FREE Home Delivery (25–35 mins)%0A`;
+            message += `💳 *Payment Preference:* ${encodeURIComponent(paymentMethod)}%0A`;
+            message += "━━━━━━━━━━━━━━━━━━━";
 
             window.open(`https://wa.me/${PHONE_NUMBER}?text=${message}`, '_blank');
+        }
+
+        // --- MENU SHARE ---
+        function shareMenu() {
+            const shareData = {
+                title: 'RS Chinese Fast Food & Dudh Dairy',
+                text: 'Check out the 100% Pure Veg menu at RS Chinese Fast Food & Dudh Dairy! Free Home Delivery 🛵',
+                url: window.location.href
+            };
+            if (navigator.share) {
+                navigator.share(shareData).catch(() => {});
+            } else {
+                const shareText = encodeURIComponent(shareData.text + '\n' + shareData.url);
+                window.open(`https://api.whatsapp.com/send?text=${shareText}`, '_blank');
+            }
+        }
+
+        // --- SEARCH & QUICK FILTERS ---
+        let currentFilter = 'all';
+        let currentSearchQuery = '';
+
+        function setQuickFilter(filter, btn) {
+            currentFilter = filter;
+            document.querySelectorAll('.filter-chip').forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+            applyFilters();
+        }
+
+        function handleSearch(val) {
+            currentSearchQuery = (val || '').trim().toLowerCase();
+            const clearBtn = document.getElementById('search-clear-btn');
+            if (clearBtn) clearBtn.style.display = currentSearchQuery ? 'flex' : 'none';
+            applyFilters();
+        }
+
+        function clearSearch() {
+            currentSearchQuery = '';
+            const input = document.getElementById('menu-search-input');
+            if (input) input.value = '';
+            const clearBtn = document.getElementById('search-clear-btn');
+            if (clearBtn) clearBtn.style.display = 'none';
+            setQuickFilter('all', document.querySelector('.filter-chip[data-filter="all"]'));
+        }
+
+        function applyFilters() {
+            const items = document.querySelectorAll('.menu-item');
+            let totalVisible = 0;
+
+            items.forEach(item => {
+                const nameEl = item.querySelector('.name');
+                const nameHiEl = item.querySelector('.name-hi');
+                const descEl = item.querySelector('.desc');
+                const priceEl = item.querySelector('.price');
+                const badgeEl = item.querySelector('.badge-bestseller');
+
+                const name = (nameEl ? nameEl.innerText : '').toLowerCase();
+                const nameHi = (nameHiEl ? nameHiEl.innerText : '').toLowerCase();
+                const desc = (descEl ? descEl.innerText : '').toLowerCase();
+                const fullText = name + ' ' + nameHi + ' ' + desc;
+                
+                let priceNum = 0;
+                if (priceEl) {
+                    const pMatch = priceEl.innerText.match(/\d+/);
+                    if (pMatch) priceNum = parseInt(pMatch[0], 10);
+                }
+
+                // Filter condition
+                let matchesFilter = true;
+                if (currentFilter === 'bestseller') {
+                    matchesFilter = Boolean(badgeEl);
+                } else if (currentFilter === 'paneer') {
+                    matchesFilter = fullText.includes('paneer') || fullText.includes('पनीर');
+                } else if (currentFilter === 'cheese') {
+                    matchesFilter = fullText.includes('cheese') || fullText.includes('चीज');
+                } else if (currentFilter === 'spicy') {
+                    matchesFilter = fullText.includes('schezwan') || fullText.includes('chilli') || fullText.includes('spicy') || fullText.includes('शेजवान') || fullText.includes('तीखा');
+                } else if (currentFilter === 'budget') {
+                    matchesFilter = priceNum <= 50;
+                }
+
+                // Search condition
+                let matchesSearch = true;
+                if (currentSearchQuery) {
+                    matchesSearch = fullText.includes(currentSearchQuery);
+                }
+
+                if (matchesFilter && matchesSearch) {
+                    item.style.display = 'flex';
+                    totalVisible++;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Toggle category titles based on whether any item in that category is visible
+            document.querySelectorAll('.menu-category-title').forEach(title => {
+                const grid = title.nextElementSibling;
+                if (grid && grid.classList.contains('menu-grid')) {
+                    const visibleInGrid = Array.from(grid.querySelectorAll('.menu-item')).some(item => item.style.display !== 'none');
+                    title.style.display = visibleInGrid ? 'block' : 'none';
+                    grid.style.display = visibleInGrid ? 'grid' : 'none';
+                }
+            });
+
+            const noResultsEl = document.getElementById('no-search-results');
+            if (noResultsEl) {
+                noResultsEl.style.display = (totalVisible === 0) ? 'block' : 'none';
+            }
         }
         
         window.addEventListener('DOMContentLoaded', () => {
             const saved = localStorage.getItem('theme');
             updateThemeIcon(saved === 'dark' ? 'dark' : 'light');
+
+            // Restore saved customer details
+            const savedName = localStorage.getItem('rs_cust_name');
+            const savedAddress = localStorage.getItem('rs_cust_address');
+            if (savedName && document.getElementById('cust-name')) document.getElementById('cust-name').value = savedName;
+            if (savedAddress && document.getElementById('cust-address')) document.getElementById('cust-address').value = savedAddress;
             
+            // Image Error Fallbacks
+            document.querySelectorAll('img.menu-item-img').forEach(img => {
+                img.addEventListener('error', function() {
+                    this.onerror = null;
+                    this.src = 'images/logo.png';
+                    this.style.objectFit = 'contain';
+                    this.style.padding = '14px';
+                    this.style.background = 'var(--accent-light)';
+                });
+            });
+
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -2490,7 +2994,7 @@
                     const scrollPos = window.scrollY + 180;
                     for (let i = categoryIds.length - 1; i >= 0; i--) {
                         const el = document.getElementById(categoryIds[i]);
-                        if (el && scrollPos >= el.offsetTop) {
+                        if (el && el.style.display !== 'none' && scrollPos >= el.offsetTop) {
                             document.querySelectorAll('.nav-pill').forEach(btn => btn.classList.remove('active'));
                             const activeBtn = document.querySelector(`[onclick="scrollToCategory('${categoryIds[i]}')"]`);
                             if (activeBtn) activeBtn.classList.add('active');
@@ -2502,6 +3006,56 @@
                 ticking = true;
             }
         });
+
+        // --- PWA SERVICE WORKER & INSTALL PROMPT ---
+        let deferredPrompt = null;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            if (!localStorage.getItem('rs_pwa_dismissed')) {
+                const banner = document.getElementById('pwa-install-banner');
+                if (banner) setTimeout(() => banner.classList.add('show'), 3000);
+            }
+        });
+
+        function installPWA() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then(() => {
+                    deferredPrompt = null;
+                    dismissPWA();
+                });
+            }
+        }
+
+        function dismissPWA() {
+            const banner = document.getElementById('pwa-install-banner');
+            if (banner) banner.classList.remove('show');
+            localStorage.setItem('rs_pwa_dismissed', 'true');
+        }
+
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js').catch(err => {
+                    console.warn('SW registration:', err);
+                });
+            });
+        }
     </script>
+
+    <!-- PWA Install Banner -->
+    <div id="pwa-install-banner" class="pwa-install-banner">
+        <div class="pwa-info">
+            <img src="images/icon-192.png" alt="RS Fast Food App">
+            <div class="pwa-text">
+                <h5>Install RS Fast Food</h5>
+                <p>Order faster right from your phone home screen</p>
+            </div>
+        </div>
+        <div class="pwa-actions">
+            <button type="button" class="btn pwa-btn-install" onclick="installPWA()">Install</button>
+            <button type="button" class="pwa-btn-dismiss" onclick="dismissPWA()" aria-label="Dismiss">✕</button>
+        </div>
+    </div>
 </body>
 </html>
