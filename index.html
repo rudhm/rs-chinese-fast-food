@@ -592,7 +592,7 @@
         footer {
             text-align: center; padding: 40px 20px; font-size: 0.9rem;
             color: var(--text-secondary); border-top: 1px solid var(--border-soft);
-            padding-bottom: calc(40px + env(safe-area-inset-bottom));
+            padding-bottom: calc(75px + env(safe-area-inset-bottom));
         }
         
         .social-links { display: flex; justify-content: center; gap: 16px; margin: 20px 0; }
@@ -606,6 +606,122 @@
         .social-icon:hover { 
             border-color: var(--accent-main); color: var(--accent-main); 
             transform: translateY(-4px); box-shadow: 0 4px 12px rgba(192, 78, 51, 0.2);
+        }
+
+        .footer-credit {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 22px 0 16px;
+        }
+
+        .agency-credit-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 8px 18px;
+            min-height: 44px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-soft);
+            border-radius: 999px;
+            color: var(--text-secondary);
+            font-size: 0.83rem;
+            font-weight: 500;
+            text-decoration: none;
+            box-shadow: 0 4px 14px rgba(45, 36, 32, 0.05);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            user-select: none;
+            -webkit-user-select: none;
+            max-width: 100%;
+        }
+
+        .agency-credit-tag::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -130%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.75s ease;
+            pointer-events: none;
+        }
+
+        [data-theme="dark"] .agency-credit-tag::before {
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+        }
+
+        .agency-credit-tag:hover::before {
+            left: 130%;
+        }
+
+        .agency-credit-tag:hover {
+            border-color: var(--accent-main);
+            color: var(--text-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(192, 78, 51, 0.18);
+        }
+
+        [data-theme="dark"] .agency-credit-tag:hover {
+            box-shadow: 0 8px 24px rgba(224, 100, 72, 0.22);
+        }
+
+        .agency-credit-tag:active {
+            transform: translateY(0) scale(0.97);
+        }
+
+        .agency-credit-tag .credit-badge-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--accent-light);
+            color: var(--accent-main);
+            flex-shrink: 0;
+            transition: transform 0.25s ease, background-color 0.2s ease, color 0.2s ease;
+        }
+
+        .agency-credit-tag:hover .credit-badge-icon {
+            transform: scale(1.12) rotate(6deg);
+            background: var(--accent-main);
+            color: #ffffff;
+        }
+
+        .agency-credit-tag .credit-text {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            white-space: nowrap;
+        }
+
+        .agency-credit-tag .credit-domain {
+            font-weight: 700;
+            color: var(--accent-main);
+            letter-spacing: 0.01em;
+            transition: color 0.2s ease;
+        }
+
+        [data-theme="dark"] .agency-credit-tag .credit-domain {
+            color: var(--accent-dark);
+        }
+
+        .agency-credit-tag .credit-arrow {
+            color: var(--text-secondary);
+            opacity: 0.7;
+            flex-shrink: 0;
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease, color 0.2s ease;
+        }
+
+        .agency-credit-tag:hover .credit-arrow {
+            opacity: 1;
+            color: var(--accent-main);
+            transform: translate(2px, -2px);
         }
 
         /* --- CART FLOATING BUTTON --- */
@@ -2320,7 +2436,25 @@
             </a>
         </div>
         
-        <small style="opacity: 0.6;">© 2026 RS Chinese Fast Food & Dudh Dairy. Free Home Delivery.</small>
+        <div class="footer-credit">
+            <a href="https://tech.teamaastudios.com" target="_blank" rel="noopener noreferrer" class="agency-credit-tag" aria-label="Website made by tech.teamaastudios.com">
+                <span class="credit-badge-icon" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="16 18 22 12 16 6"></polyline>
+                        <polyline points="8 6 2 12 8 18"></polyline>
+                    </svg>
+                </span>
+                <span class="credit-text">
+                    Made by <span class="credit-domain">tech.teamaastudios.com</span>
+                </span>
+                <svg class="credit-arrow" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="7" y1="17" x2="17" y2="7"></line>
+                    <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+            </a>
+        </div>
+        
+        <small style="opacity: 0.6; display: block; margin-top: 14px;">© 2026 RS Chinese Fast Food & Dudh Dairy. Free Home Delivery.</small>
     </footer>
 
     <!-- Floating Cart Bar -->
